@@ -1,0 +1,17 @@
+# Rendered by fde-oneclick-deploy for $customer ($environment)
+# version: $version | region: $region | tier: $tier
+services:
+  app:
+    image: registry.example.internal/$customer/app:$version
+    ports:
+      - "$port:8080"
+    environment:
+      - APP_ENV=$environment
+      - APP_REGION=$region
+    deploy:
+      replicas: $replicas
+      resources:
+        limits:
+          cpus: "$cpu"
+          memory: ${memory_mb}M
+    restart: unless-stopped

@@ -1,0 +1,13 @@
+customer: acme-corp
+environment: production
+region: us-east-1
+tier: medium
+version: 1.0.0
+port: 8080
+feature_flags:
+  audit_log: true
+  metrics: true
+  sso: false
+secrets:
+  DB_PASSWORD: vault://prod/acme/db-password
+  API_TOKEN: env://ACME_API_TOKEN

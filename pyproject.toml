@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fde-oneclick-deploy"
+version = "1.0.0"
+description = "One-click customer deployment toolkit: validate, render, preflight, deploy, health-check and roll back a SaaS stack in a local sandbox."
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6"]
+
+[project.scripts]
+fde-deploy = "fde_deploy.cli:main"
+
+[tool.setuptools]
+packages = ["fde_deploy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

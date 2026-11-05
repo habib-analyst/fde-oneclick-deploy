@@ -1,0 +1,21 @@
+# Reverse proxy for $customer ($environment) — rendered by fde-oneclick-deploy
+upstream ${customer}_app {
+    server 127.0.0.1:$port;
+}
+
+server {
+    listen 80;
+    server_name $customer.example.internal;
+
+    location / {
+        proxy_pass http://${customer}_app;
+        proxy_set_header Host $$host;
+        proxy_set_header X-Real-IP $$remote_addr;
+        proxy_set_header X-Forwarded-For $$proxy_add_x_forwarded_for;
+    }
+
+    location /health {
+        proxy_pass http://${customer}_app/health;
+        access_log off;
+    }
+}
